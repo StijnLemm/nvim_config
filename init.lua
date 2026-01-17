@@ -845,7 +845,17 @@ require('lazy').setup({
 -- Custom thins for Stijn Lemm
 vim.cmd 'set list'
 vim.cmd 'set shiftwidth=4'
+
 vim.keymap.set('n', '<leader>lg', '<cmd>LazyGit<CR>')
+vim.keymap.set('n', '<leader>bn', '<cmd>wa | !ninja<CR>')
+vim.keymap.set('n', '<leader>bs', '<cmd>wa | !./build.sh<CR>')
+
+require('which-key').register {
+  ['<leader>b'] = { name = '[B]uild commands', _ = 'which_key_ignore' },
+  ['<leader>l'] = { name = '[L]azyGit', _ = 'which_key_ignore' },
+}
+
+require('oil').setup()
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
