@@ -1,0 +1,8 @@
+[
+    {
+      "id": "local-postgres",
+      "name": "Strifo DB",
+      "type": "postgres",
+      "url": "postgres://postgres:Jemoeder1234%21@10.0.0.26:5433/postgres?sslmode=disable"
+    }
+]

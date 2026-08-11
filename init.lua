@@ -91,7 +91,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -849,13 +849,34 @@ vim.cmd 'set shiftwidth=4'
 vim.keymap.set('n', '<leader>lg', '<cmd>LazyGit<CR>')
 vim.keymap.set('n', '<leader>bn', '<cmd>wa | !ninja<CR>')
 vim.keymap.set('n', '<leader>bs', '<cmd>wa | !./build.sh<CR>')
+vim.keymap.set('n', '<leader>fb', '<cmd>wa | e %:h<CR>')
+
+-- dbee keybindings
+vim.keymap.set('n', '<leader>do', '<cmd>lua require("dbee").open()<CR>')
+vim.keymap.set('n', '<leader>dc', '<cmd>lua require("dbee").close()<CR>')
+vim.keymap.set('n', '<leader>dt', '<cmd>lua require("dbee").toggle()<CR>')
+vim.keymap.set('n', '<leader>dz', '<cmd>lua require("dbee").store()<CR>')
 
 require('which-key').register {
   ['<leader>b'] = { name = '[B]uild commands', _ = 'which_key_ignore' },
   ['<leader>l'] = { name = '[L]azyGit', _ = 'which_key_ignore' },
+  ['<leader>f'] = { name = '[F]ile browser', _ = 'which_key_ignore' },
+  ['<leader>d'] = { name = '[D]bee (Database)', _ = 'which_key_ignore' },
 }
 
-require('oil').setup()
+-- Default configuration
+require('autoread').setup {
+  -- Check interval in milliseconds
+  interval = 500,
+  -- Show notifications when files change
+  notify_on_change = true,
+  -- How to handle cursor position after reload: "preserve", "scroll_down", or "none"
+  cursor_behavior = 'preserve',
+}
+
+require('oil').setup {
+  show_hidden = true,
+}
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
